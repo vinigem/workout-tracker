@@ -1,0 +1,22 @@
+<div class="center-align-container">
+    <div class="form-group row">
+        <div class="col-xs-12 col-sm-12">
+            <input type="text" class="form-control" placeholder="Search" #filter (input)="filterWorkouts(filter.value)">
+        </div>
+    </div>
+    
+    <div class="form-group view-container" *ngFor="let workout of workouts; let idx=index;">
+        <div class="row margin-5">
+            <div class="col-xs-12 col-sm-12">
+                <input type="text" class="form-control" value="{{workout.title}}" disabled>
+            </div>
+        </div>
+        <div class="row margin-5 item-group">
+            <button type="button" class="btn btn-primary item" [routerLink]="['/edit-workout', '1']">Edit</button>
+            <button type="button" class="btn btn-primary item">Delete</button>
+            <button type="button" class="btn btn-primary item" [routerLink]="['/start-workout', '1']">Start</button>
+            <button type="button" class="btn btn-primary item" [routerLink]="['/end-workout', '1']">End</button>
+        </div>
+    </div>
+        
+</div>	

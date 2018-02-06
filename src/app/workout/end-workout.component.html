@@ -1,0 +1,40 @@
+<div>
+    <div class="form-group row">
+        <h3>End Workout</h3>
+    </div>
+    <form>
+        <div class="form-group row">
+            <label for="title" class="col-xs-12 col-sm-2">Title:</label>
+            <div class="col-xs-12 col-sm-4">
+                <input type="text" class="form-control" id="title" disabled> 
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label for="note" class="col-xs-12 col-sm-2">Note:</label>
+            <div class="col-xs-12 col-sm-4">
+                <textarea class="form-control" id="note" rows="5"></textarea> 
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label for="end-date" class="col-xs-12 col-sm-2">End Date:</label>
+            <div class="col-xs-12 col-sm-4">
+                <input type="date" class="form-control" id="end-date"> 
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="end-time" class="col-xs-12 col-sm-2">End Time:</label>
+            <div class="col-xs-12 col-sm-4">
+                <input type="time" class="form-control" id="end-time"> 
+            </div>
+        </div>
+
+        <div class="form-group row col-xs-12 col-sm-4 col-sm-offset-2 item-group">
+            <input type="button" class="form-control btn btn-primary item" value="Start">
+            <input type="button" class="form-control btn btn-primary item" value="Cancel" [routerLink]="['/view']">
+        </div>
+    </form>
+        
+</div>	
