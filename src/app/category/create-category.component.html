@@ -1,31 +1,31 @@
 <div class="center-align-container">
-    <h3>Add Category</h3>
-    <div class="form-group row">
+    <h2 class="text-center">Add Category</h2>
+    <div class="form-group row border">
         <div class="col-xs-12 col-sm-12">
             <input type="text" class="form-control" placeholder="Search" #filter (input)="filterCategories(filter.value)">
         </div>
     </div>
     
-    <div class="form-group row">
-        <div class="col-xs-8 col-sm-9">
+    <div class="form-group row border">
+        <div class="col-xs-10 col-sm-10">
             <input type="text" class="form-control" placeholder="New category" [(ngModel)]="newCategory" (input)="invalid=false;">
             <small *ngIf="invalid">
                 <span class="text-danger">New Category is required.</span>
             </small>
         </div>
-        <div class="col-xs-4 col-sm-3 item-group">
-            <button type="button" class="btn btn-secondary item" (click)="addCategory()"><i class="fa fa-plus"></i></button>
+        <div class="col-xs-2 col-sm-2 item-group">
+            <button type="button" class="btn btn-primary item" (click)="addCategory()"><i class="fa fa-plus"></i></button>
         </div>
     </div>
 
-    <div class="form-group row" *ngFor="let category of categories; let idx = index;">
-        <div class="col-xs-6 col-sm-9">
+    <div class="form-group row border" *ngFor="let category of categories; let idx = index;">
+        <div class="col-xs-7 col-sm-9">
             <input type="text" class="form-control" [(ngModel)]="category.name" [disabled]="!category.editable">
         </div>
-        <div class="col-xs-6 col-sm-3 item-group">
-            <button type="button" class="btn btn-secondary item" *ngIf="!category.editable" (click)="category.editable=true;">Edit</button>
-            <button type="button" class="btn btn-secondary item" *ngIf="category.editable" (click)="update(category.name, idx);category.editable=false;">Update</button>
-            <button type="button" class="btn btn-secondary item" (click)="delete(idx)">Delete</button>
+        <div class="col-xs-5 col-sm-3 item-group">
+            <button type="button" class="btn btn-primary item" *ngIf="!category.editable" (click)="category.editable=true;">Edit</button>
+            <button type="button" class="btn btn-success item" *ngIf="category.editable" (click)="update(category.name, idx);category.editable=false;">Update</button>
+            <button type="button" class="btn btn-danger item" (click)="delete(idx)">Delete</button>
         </div>
     </div>
         

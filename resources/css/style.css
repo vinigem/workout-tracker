@@ -29,11 +29,11 @@ html, body {
 
 /** End:- screen overlay */
 .view-container {
-	width: 90%;
-	margin: auto;
-	border: 1px solid cornflowerblue;
-	margin: 10px 20px;
-	padding: 10px;
+	border: 1px solid #000;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 10px;
+    border-radius: 10px;
 }
 
 .margin-5 {
@@ -50,8 +50,16 @@ html, body {
 }
 
 .center-align-container {
-	padding: 0 20px;
+	padding: 5px 20px;
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    background-color: #85d1de;
+    border-radius: 15px;
+}
+
+.border {
+	border: 1px solid #000;
+    border-radius: 5px;
+    padding: 2px 5px;
 }
