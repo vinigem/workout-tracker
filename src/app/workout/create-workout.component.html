@@ -44,7 +44,7 @@
                 </small> 
             </div>
             <div class="col-xs-4 col-sm-3 item-group">
-                <button type="button" class="btn btn-secondary item" [routerLink]="['/create-category']"><i class="fa fa-plus"></i></button>
+                <button type="button" class="btn btn-secondary item" (click)="openAddCategory=true"><i class="fa fa-plus"></i></button>
             </div>
         </div>
 
@@ -54,5 +54,19 @@
             </div>
         </div>
     </form>
+
+    <modal header="Add Category" [(show)]="openAddCategory">
+        <div class="form-group row">
+        <div class="col-xs-10 col-sm-10">
+            <input type="text" class="form-control" placeholder="New category" [(ngModel)]="newCategory" (input)="invalid=false;">
+            <small *ngIf="invalidCategory">
+                <span class="text-danger">New Category is required.</span>
+            </small>
+        </div>
+        <div class="col-xs-2 col-sm-2 item-group">
+            <button type="button" class="btn btn-primary item" (click)="addCategory()"><i class="fa fa-plus"></i></button>
+        </div>
+    </div>
+    </modal>
         
 </div>	

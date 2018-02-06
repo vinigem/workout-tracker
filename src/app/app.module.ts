@@ -19,10 +19,13 @@ import { HttpService } from './http.service';
 import { AlertComponent } from './alert/alert.component';
 import { AlertService } from './alert/alert.service';
 
+import { ModalComponent } from './modal/modal.component';
+
 @NgModule({
   declarations: [
     AppComponent, ViewComponent, CreateWorkoutComponent, EditWorkoutComponent,
-      /*StartWorkoutComponent, EndWorkoutComponent,*/ CreateCategoryComponent, TrackComponent, AlertComponent
+      /*StartWorkoutComponent, EndWorkoutComponent,*/ CreateCategoryComponent,
+      TrackComponent, AlertComponent, ModalComponent
   ],
   imports: [
     BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule

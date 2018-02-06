@@ -12,6 +12,9 @@ export class CreateWorkoutComponent {
   workoutForm: FormGroup;
   submitted: boolean;
   categories: Array<string>;
+  newCategory: string;
+  invalidCategory: boolean;
+  openAddCategory: boolean;
 
   constructor(private fb: FormBuilder, private httpService: HttpService, private alertService: AlertService) { 
     this.createForm();
@@ -50,6 +53,23 @@ export class CreateWorkoutComponent {
         this.alertService.addAlert('Workout already exists!!', 'error');
       }
       
+    }
+  }
+
+  addCategory(): void {
+    if(this.newCategory && this.newCategory.length > 0) {
+      const status = this.httpService.saveCategory(this.newCategory);
+      if(status) {
+        this.alertService.addAlert('Category added successfully..!!', 'success');
+        this.categories = this.httpService.getCategories();
+        this.newCategory = null;
+        this.openAddCategory = false;
+      } else {
+        this.alertService.addAlert('Category already exists..!!', 'error');
+      }
+      
+    } else {
+      this.invalidCategory = true;
     }
   }
   

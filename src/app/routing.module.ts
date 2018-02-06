@@ -14,8 +14,6 @@ const routes: Routes = [
     { path: 'view', component: ViewComponent },
     { path: 'create-workout', component: CreateWorkoutComponent },
     { path: 'edit-workout/:workout', component: EditWorkoutComponent },
-    //{ path: 'start-workout/:workout', component: StartWorkoutComponent },
-    //{ path: 'end-workout/:workout', component: EndWorkoutComponent },
     { path: 'create-category', component: CreateCategoryComponent },
     { path: 'track', component: TrackComponent }
 ];
