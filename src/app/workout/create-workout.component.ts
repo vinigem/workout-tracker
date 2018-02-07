@@ -49,6 +49,8 @@ export class CreateWorkoutComponent {
       const status = this.httpService.saveWorkout(model);
       if(status) {
         this.alertService.addAlert('Workout added successfully..!!', 'success');
+        this.workoutForm.reset();
+        this.submitted = false; 
       } else {
         this.alertService.addAlert('Workout already exists!!', 'error');
       }

@@ -35,7 +35,7 @@ export class EditWorkoutComponent implements OnInit {
 
   createForm() {
     this.workoutForm = this.fb.group({
-      title: [this.workout.title],
+      title: [{value: this.workout.title, disabled: true}],
       note: [this.workout.note],
       category: [this.workout.category, Validators.required]
     });

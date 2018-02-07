@@ -4,8 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { ViewComponent } from './view/view.component';
 import { CreateWorkoutComponent } from './workout/create-workout.component';
 import { EditWorkoutComponent } from './workout/edit-workout.component';
-import { StartWorkoutComponent } from './workout/start-workout.component';
-import { EndWorkoutComponent } from './workout/end-workout.component';
 import { CreateCategoryComponent } from './category/create-category.component';
 import { TrackComponent } from './track/track.component';
 

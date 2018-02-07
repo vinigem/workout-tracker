@@ -10,6 +10,14 @@ export class ViewComponent {
 
   workouts: Array<Workout>;
   workoutStarted: number;
+  workoutEnded: number;
+  openStartWorkout: boolean;
+  openEndWorkout: boolean;
+  startDate: Date;
+  startTime: Date;
+  endDate: Date;
+  endTime: Date;
+  currentWorkout: Workout;
 
   constructor(private httpService: HttpService, private alertService: AlertService) {
     this.workouts = this.httpService.getWorkouts();
@@ -29,12 +37,44 @@ export class ViewComponent {
     }
   }
 
-  startWorkout(idx: number): void {
+  openStartPopup(idx: number): void {
     this.workoutStarted = idx;
+    this.currentWorkout = this.workouts[idx];
+    this.startDate = new Date();
+    this.startTime = new Date();
+    this.openStartWorkout = true;
   }
 
-  endWorkout(idx: number): void {
+  startWorkout(): void {
+        
+  }
+
+  cancelStartWorkout(): void {
+    this.openStartWorkout = false;
     this.workoutStarted = null;
+    this.currentWorkout = null;
+    this.startDate = null;
+    this.startTime = null;
+  }
+
+  openEndPopup(idx: number): void {
+    this.workoutEnded = idx;
+    this.currentWorkout = this.workouts[idx];
+    this.endDate = new Date();
+    this.endTime = new Date();
+    this.openEndWorkout = true;
+  }
+
+  endWorkout(): void {
+        
+  }
+
+  cancelEndWorkout(): void {
+    this.openEndWorkout = false;
+    this.workoutStarted = null;
+    this.currentWorkout = null;
+    this.endDate = null;
+    this.endTime = null;
   }
   
 }
