@@ -59,7 +59,7 @@
 <modal header="Add Category" [(show)]="openAddCategory">
     <div class="form-group row">
         <div class="col-xs-10 col-sm-10">
-            <input type="text" class="form-control" placeholder="New category" [(ngModel)]="newCategory" (input)="invalid=false;">
+            <input type="text" class="form-control" placeholder="New category" [(ngModel)]="newCategory" (input)="invalidCategory=false;">
             <small *ngIf="invalidCategory">
                 <span class="form-error"><i class="fa fa-exclamation-triangle"></i> New Category is required.</span>
             </small>
