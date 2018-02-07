@@ -12,10 +12,10 @@
             </div>
         </div>
         <div class="row margin-5 item-group">
-            <button type="button" class="btn btn-primary item" [routerLink]="['/edit-workout', '1']">Edit</button>
-            <button type="button" class="btn btn-danger item">Delete</button>
-            <button type="button" class="btn btn-success item" [routerLink]="['/start-workout', '1']">Start</button>
-            <button type="button" class="btn btn-warning item" [routerLink]="['/end-workout', '1']">End</button>
+            <button type="button" class="btn btn-primary item" [routerLink]="['/edit-workout', idx]">Edit</button>
+            <button type="button" class="btn btn-danger item" (click)="deleteWorkout(idx)">Delete</button>
+            <button type="button" class="btn btn-success item" (click)="startWorkout(idx)" >Start</button>
+            <button type="button" class="btn btn-warning item" (click)="endWorkout(idx)" [disabled]="workoutStarted !== idx" >End</button>
         </div>
     </div>
         

@@ -1,38 +1,57 @@
-<div>
-    <div class="form-group row">
-        <h3>Edit Workout</h3>
-    </div>
+<div class="center-align-container">
+    <h2 class="text-center">Edit Workout</h2>
     <form [formGroup]="workoutForm" novalidate (ngSubmit)="update(workoutForm.value, workoutForm.valid)">
-        <div class="form-group row">
-            <label for="title" class="col-xs-12 col-sm-2">Title:</label>
-            <div class="col-xs-12 col-sm-4">
-                <input type="text" formControlName="title" class="form-control" id="title"> 
+        <div class="form-group row border">
+            <label for="title" class="col-xs-12 col-sm-3">Title:</label>
+            <div class="col-xs-12 col-sm-9">
+                <input type="text" formControlName="title" class="form-control" id="title" disabled>
             </div>
         </div>
         
-        <div class="form-group row">
-            <label for="note" class="col-xs-12 col-sm-2">Note:</label>
-            <div class="col-xs-12 col-sm-4">
-                <textarea class="form-control" formControlName="note" id="note" rows="5"></textarea> 
+        <div class="form-group row border">
+            <label for="note" class="col-xs-12 col-sm-3">Note:</label>
+            <div class="col-xs-12 col-sm-9">
+                <textarea formControlName="note" class="form-control" id="note" rows="5"></textarea> 
             </div>
         </div>
         
-        <div class="form-group row">
-            <label for="category" class="col-xs-12 col-sm-2">Category:</label>
-            <div class="col-xs-8 col-sm-3">
+        <div class="form-group row border">
+            <label for="category" class="col-xs-12 col-sm-3">Category:</label>
+            <div class="col-xs-8 col-sm-7">
                 <select class="form-control" formControlName="category" id="category">
                     <option value="" selected>Select Category</option>
+                    <option *ngFor="let category of categories" [ngValue]="category">{{category}}</option>
                 </select>
+                <small [hidden]="workoutForm.controls.category.valid || (workoutForm.controls.category.pristine && !submitted)">
+                    <span class="form-error"><i class="fa fa-exclamation-triangle"></i> Category is required.</span>
+                </small> 
             </div>
-            <div class="col-xs-4 col-sm-1 item-group">
-                <button type="button" class="btn btn-secondary item" [routerLink]="['/create-category']"><i class="fa fa-plus"></i></button>
+            <div class="col-xs-4 col-sm-2 item-group">
+                <button type="button" class="btn btn-success item" (click)="openAddCategory=true"><i class="fa fa-plus"></i></button>
             </div>
         </div>
 
-        <div class="form-group row col-xs-12 col-sm-4 col-sm-offset-2 item-group">
-            <input type="button" class="form-control btn btn-primary item" value="Update">
-            <input type="button" class="form-control btn btn-primary item" value="Cancel" [routerLink]="['/view']">
+        <div class="form-group row col-sm-offset-3">
+            <div class="col-xs-6 col-sm-3">
+                <input type="submit" class="form-control btn btn-primary item" value="Update">
+            </div>
+            <div class="col-xs-6 col-sm-3">
+                <input type="button" class="form-control btn btn-warning item" value="Cancel" [routerLink]="['/view']">
+            </div>
         </div>
     </form>
-        
 </div>	
+
+<modal header="Add Category" [(show)]="openAddCategory">
+    <div class="form-group row">
+        <div class="col-xs-10 col-sm-10">
+            <input type="text" class="form-control" placeholder="New category" [(ngModel)]="newCategory" (input)="invalid=false;">
+            <small *ngIf="invalidCategory">
+                <span class="form-error"><i class="fa fa-exclamation-triangle"></i> New Category is required.</span>
+            </small>
+        </div>
+        <div class="col-xs-2 col-sm-2 item-group">
+            <button type="button" class="btn btn-primary item" (click)="addCategory()"><i class="fa fa-plus"></i></button>
+        </div>
+    </div>
+</modal>

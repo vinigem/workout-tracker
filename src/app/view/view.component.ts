@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpService } from '../http.service';
+import { AlertService } from '../alert/alert.service';
 import { Workout } from '../workout/workout';
 
 @Component({
@@ -8,8 +9,9 @@ import { Workout } from '../workout/workout';
 export class ViewComponent {
 
   workouts: Array<Workout>;
+  workoutStarted: number;
 
-  constructor(private httpService: HttpService) {
+  constructor(private httpService: HttpService, private alertService: AlertService) {
     this.workouts = this.httpService.getWorkouts();
   }
 
@@ -17,6 +19,22 @@ export class ViewComponent {
     this.workouts = this.httpService.getWorkouts().filter(workout => {
       return workout.title.toLowerCase().indexOf(search.toLowerCase()) !== -1;
     });
+  }
+
+  deleteWorkout(idx: number): void {
+    const status = this.httpService.deleteWorkout(idx);
+    if(status) {
+      this.alertService.addAlert('Workout deleted successfully..!!', 'success');
+      this.workouts = this.httpService.getWorkouts();
+    }
+  }
+
+  startWorkout(idx: number): void {
+    this.workoutStarted = idx;
+  }
+
+  endWorkout(idx: number): void {
+    this.workoutStarted = null;
   }
   
 }

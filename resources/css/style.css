@@ -3,6 +3,7 @@ html, body {
 	padding: 0;
 	height: 100%;
 	background: #f5fffa;
+	color: #000;
 }
 
 .content {
@@ -26,8 +27,8 @@ html, body {
 	align-items: center;
 	justify-content: center;
 }
-
 /** End:- screen overlay */
+
 .view-container {
 	border: 1px solid #000;
     margin-left: auto;
@@ -54,12 +55,16 @@ html, body {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #85d1de;
+    background-color: #495c70;
+	color: #fff;
     border-radius: 15px;
+	-webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
 }
 
 .border {
-	border: 1px solid #000;
+	border: 1px solid #777;
     border-radius: 5px;
     padding: 2px 5px;
 }
@@ -69,4 +74,9 @@ html, body {
 	left: 50% !important;
     top: 50% !important;
     transform: translate(-50%, -50%);
+}
+
+.form-error {
+	color: #cb0400;
+    font-weight: 600;
 }

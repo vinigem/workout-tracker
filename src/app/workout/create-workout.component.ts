@@ -52,7 +52,6 @@ export class CreateWorkoutComponent {
       } else {
         this.alertService.addAlert('Workout already exists!!', 'error');
       }
-      
     }
   }
 
