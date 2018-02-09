@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpService } from '../http.service';
 import { AlertService } from '../alert/alert.service';
 import { Workout } from '../workout/workout';
+import { DateUtil } from '../utils/date-util';
 
 @Component({
   templateUrl: './view.component.html'
@@ -13,11 +14,12 @@ export class ViewComponent {
   workoutEnded: number;
   openStartWorkout: boolean;
   openEndWorkout: boolean;
-  startDate: Date;
-  startTime: Date;
-  endDate: Date;
-  endTime: Date;
+  startDate: string;
+  startTime: string;
+  endDate: string;
+  endTime: string;
   currentWorkout: Workout;
+  workoutEntry: any;
 
   constructor(private httpService: HttpService, private alertService: AlertService) {
     this.workouts = this.httpService.getWorkouts();
@@ -40,13 +42,21 @@ export class ViewComponent {
   openStartPopup(idx: number): void {
     this.workoutStarted = idx;
     this.currentWorkout = this.workouts[idx];
-    this.startDate = new Date();
-    this.startTime = new Date();
+    this.startDate = DateUtil.getCurrentDate();
+    this.startTime = DateUtil.getCurrentTime();
     this.openStartWorkout = true;
   }
 
   startWorkout(): void {
-        
+    this.workoutEntry = {
+      title: this.currentWorkout.title,
+      note: this.currentWorkout.note,
+      startDate: this.startDate,
+      startTime: this.startTime
+    }
+
+    this.httpService.saveWorkoutEntry(this.workoutEntry);
+    this.openStartWorkout = false;      
   }
 
   cancelStartWorkout(): void {
@@ -60,13 +70,22 @@ export class ViewComponent {
   openEndPopup(idx: number): void {
     this.workoutEnded = idx;
     this.currentWorkout = this.workouts[idx];
-    this.endDate = new Date();
-    this.endTime = new Date();
+    this.endDate = DateUtil.getCurrentDate();
+    this.endTime = DateUtil.getCurrentTime();
     this.openEndWorkout = true;
   }
 
   endWorkout(): void {
-        
+    this.workoutEntry = {
+      ...this.workoutEntry,
+      endDate: this.endDate,
+      endTime: this.endTime
+    }
+
+    this.httpService.updateWorkoutEntry(this.workoutEntry);
+
+    this.openEndWorkout = true;
+    this.resetWorkoutEntry();      
   }
 
   cancelEndWorkout(): void {
@@ -75,6 +94,19 @@ export class ViewComponent {
     this.currentWorkout = null;
     this.endDate = null;
     this.endTime = null;
+  }
+
+  resetWorkoutEntry(): void{
+    this.openStartWorkout = false;
+    this.workoutStarted = null;
+    this.currentWorkout = null;
+    this.startDate = null;
+    this.startTime = null;
+    this.openEndWorkout = false;
+    this.workoutStarted = null;
+    this.endDate = null;
+    this.endTime = null;
+    this.workoutEntry = null;
   }
   
 }

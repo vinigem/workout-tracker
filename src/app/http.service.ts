@@ -62,7 +62,6 @@ export class HttpService {
         } else {
             return ERROR;
         }
-        
     }
 
     updateWorkout(workout: Workout, idx: number): boolean {
@@ -77,6 +76,35 @@ export class HttpService {
         workouts.splice(idx, 1);
         localStorage.setItem('workouts', JSON.stringify(workouts));
         return SUCCESS;
+    }
+
+    getWorkoutEntries(): Array<any> {
+        let workoutEntries = new Array<any>();
+        const existingWorkoutEntries = localStorage.getItem('workoutEntries');
+        if(null !== existingWorkoutEntries) {
+            workoutEntries = JSON.parse(existingWorkoutEntries);
+        }
+        return workoutEntries;
+    }
+
+    saveWorkoutEntry(workoutEntry: any): void {
+        let workoutEntries = this.getWorkoutEntries();
+        workoutEntries.push(workoutEntry);
+        localStorage.setItem('workoutEntries', JSON.stringify(workoutEntries));
+    }
+
+    updateWorkoutEntry(workoutEntry: any): void {
+        let workoutEntries = this.getWorkoutEntries();
+        let index = workoutEntries.findIndex(existingWorkoutEntry => {
+           return existingWorkoutEntry.title === workoutEntry.title
+            && existingWorkoutEntry.startDate === workoutEntry.startDate
+            && existingWorkoutEntry.startTime === workoutEntry.startTime
+        });
+
+        if(index >= 0) {
+            workoutEntries[index] = workoutEntry;
+            localStorage.setItem('workoutEntries', JSON.stringify(workoutEntries));
+        }
     }
 
 }
