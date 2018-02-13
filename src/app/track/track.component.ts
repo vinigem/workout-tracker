@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpService } from '../http.service';
 import { DateUtil } from '../utils/date-util';
+import { ChartData } from '../chart/chart-data';
 
 @Component({
   templateUrl: './track.component.html'
@@ -11,17 +12,18 @@ export class TrackComponent {
   lastDayWorkoutTime: number;
   lastWeekWorkoutTime: number;
   lastMonthWorkoutTime: number;
+  weekChartData: ChartData;
 
   constructor(private httpService: HttpService) {
     this.workoutEntries = this.httpService.getWorkoutEntries();
     this.calculateWorkoutTime();
   }
-  
+
   calculateWorkoutTime(): void {
     const lastDay = DateUtil.getLastDay();
-    
+
     this.lastDayWorkoutTime = this.workoutEntries.reduce((total, workoutEntry) => {
-      if(workoutEntry.startDate === lastDay) {
+      if (workoutEntry.startDate === lastDay) {
         total += DateUtil.substractTime(workoutEntry.endTime, workoutEntry.startTime);
       }
       return total;
@@ -29,7 +31,7 @@ export class TrackComponent {
 
     const lastMonth = DateUtil.getLastMonth();
     this.lastMonthWorkoutTime = this.workoutEntries.reduce((total, workoutEntry) => {
-      if(workoutEntry.startDate.split('-')[1] === lastMonth) {
+      if (workoutEntry.startDate.split('-')[1] === lastMonth) {
         total += DateUtil.substractTime(workoutEntry.endTime, workoutEntry.startTime);
       }
       return total;
@@ -39,21 +41,33 @@ export class TrackComponent {
     const lastWeekEnd = now.getDay() === 0 ? 7 : now.getDay();
     let lastWeekEndDate = new Date(now);
     lastWeekEndDate.setDate(now.getDate() - lastWeekEnd);
-    
+
     this.lastWeekWorkoutTime = 0;
-    for(let i = 0; i <= 6; i++) {
+    this.weekChartData = this.prepareWeekChartData();
+    for (let i = 0; i <= 6; i++) {
       let formattedDate = DateUtil.formatDate(lastWeekEndDate);
       this.lastWeekWorkoutTime = this.workoutEntries.reduce((total, workoutEntry) => {
-        if(workoutEntry.startDate === formattedDate) {
+        if (workoutEntry.startDate === formattedDate) {
           total += DateUtil.substractTime(workoutEntry.endTime, workoutEntry.startTime);
         }
         return total;
-      }, this.lastWeekWorkoutTime); 
-      lastWeekEndDate = DateUtil.getDateBefore(lastWeekEndDate); 
+      }, this.lastWeekWorkoutTime);
+      lastWeekEndDate = DateUtil.getDateBefore(lastWeekEndDate);
     }
   }
 
-  
+  prepareWeekChartData(): ChartData {
+    const caloriesBurnt = 4800;
+    const chartData = {
+      id: 'weekChart',
+      label: 'Week Total Calories Burnt: ' + caloriesBurnt,
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      data: [800, 600, 800, 900, 700, 600, 700],
+      height: 200,
+      width: 400
+    };
+    return chartData;
+  }
 
 
 }

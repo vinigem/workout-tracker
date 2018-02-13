@@ -19,10 +19,12 @@ import { AlertService } from './alert/alert.service';
 
 import { ModalComponent } from './modal/modal.component';
 
+import { BarChart } from './chart/bar-chart.component';
+
 @NgModule({
   declarations: [
     AppComponent, ViewComponent, CreateWorkoutComponent, EditWorkoutComponent, CreateCategoryComponent,
-      TrackComponent, AlertComponent, ModalComponent
+      TrackComponent, AlertComponent, ModalComponent, BarChart
   ],
   imports: [
     BrowserModule, RoutingModule, FormsModule, ReactiveFormsModule, HttpClientModule
