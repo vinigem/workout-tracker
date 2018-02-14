@@ -114,7 +114,7 @@ export class TrackComponent {
     this.monthChartData = {
       id: 'monthChart',
       label: '',
-      labels: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5'],
+      labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
       data: [0, 0, 0, 0, 0],
       height: 200,
       width: 400
