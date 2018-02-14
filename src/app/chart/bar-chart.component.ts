@@ -2,7 +2,7 @@ import { Component, Input, AfterViewInit } from '@angular/core';
 import { ChartData } from './chart-data';
 import * as Chart from 'chart.js';
 
-const colors = ['#33FFF3', '#FFE633', '#3339FF', '#FF7133', '#5FBA6A', '#94CFF8', '#1B1D92'];
+const COLORS = ['#33FFF3', '#FFE633', '#3339FF', '#FF7133', '#5FBA6A', '#94CFF8', '#1B1D92'];
 
 @Component({
     selector: 'barchart',
@@ -18,6 +18,11 @@ export class BarChart implements AfterViewInit {
     constructor() { }
 
     ngAfterViewInit() {
+        let barColors = [];
+        this.chartData.labels.forEach((label, index) => {
+            barColors.push(COLORS[index % COLORS.length]);
+        });
+
         this.canvas = document.getElementById(this.chartData.id);
         this.ctx = this.canvas.getContext('2d');
         let myChart = new Chart(this.ctx, {
@@ -28,7 +33,7 @@ export class BarChart implements AfterViewInit {
                     label: this.chartData.label,
                     data: this.chartData.data,
                     borderWidth: 1,
-                    backgroundColor: colors
+                    backgroundColor: barColors
                 }]
             },
 

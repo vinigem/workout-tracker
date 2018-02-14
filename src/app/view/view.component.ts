@@ -79,7 +79,8 @@ export class ViewComponent {
     this.workoutEntry = {
       ...this.workoutEntry,
       endDate: this.endDate,
-      endTime: this.endTime
+      endTime: this.endTime,
+      calories: this.currentWorkout.calories
     }
 
     this.httpService.updateWorkoutEntry(this.workoutEntry);
