@@ -40,10 +40,10 @@ b. Existing categories can be edited or deleted
 ## Track
 ```
 a. It will display workout reports.
-b. It will display total workout time for the current day when workout was done. 
-c. It will also display duration of total workout done in the current week from Monday to Sunday.
-d. It will also display total workout duration of current month.
-f. It will display Charts of total calories burnt in Week, in month and in year respectively.
+b. It will display total workout time for the current day. 
+c. It will display duration of total workout done in the current week from Monday to Sunday.
+d. It will display total workout duration of current month.
+f. It will display Charts of total calories burnt in Week, in Month and in Year respectively.
 ```
 
 ### Note
