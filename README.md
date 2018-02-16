@@ -1,3 +1,10 @@
+# Installation and Runnig the application
+```
+npm install
+npm start
+open http://localhost:4200 in browser
+```
+
 # WorkoutTracker
 ```
 1.	View All Workouts
